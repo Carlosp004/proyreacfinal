@@ -34,26 +34,3 @@ export const agregarCarrito = (item, cantProducto) =>   {
 }
 
 
-export const agregarEmpleado = (empleado) => {
-    console.log(empleado);
-    let carrito = [];
-
-    if (sessionStorage.getItem("carritocompras")) {
-        carrito = JSON.parse(sessionStorage.getItem("carritocompras"));
-        const index = carrito.findIndex(item => item.idempleado === empleado.idempleado);
-
-        if (index === -1) {
-            // Si el empleado no está en el carrito, lo agregamos
-            carrito.push(empleado);
-        } else {
-            // Si el empleado ya está en el carrito, incrementamos la cantidad
-            carrito[index].cantidad++;
-        }
-    } else {
-        // Si el carrito está vacío, agregamos el primer empleado
-        carrito.push(empleado);
-    }
-
-    sessionStorage.setItem("carritocompras", JSON.stringify(carrito));
-    console.log(carrito);
-};

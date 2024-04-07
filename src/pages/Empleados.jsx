@@ -20,15 +20,25 @@ function Empleados() {
             });
     };
 
-    const toggleSeleccion = (idEmpleado) => {
-        const empleadoSeleccionado = listaEmpleados.find(empleado => empleado.idempleado === idEmpleado);
-        if (empleadosSeleccionados.some(empleado => empleado.idempleado === idEmpleado)) {
-            // Si el empleado ya está seleccionado, lo removemos de la lista
-            setEmpleadosSeleccionados(empleadosSeleccionados.filter(empleado => empleado.idempleado !== idEmpleado));
-        } else {
-            // Si el empleado no está seleccionado, lo agregamos a la lista
-            setEmpleadosSeleccionados([...empleadosSeleccionados, empleadoSeleccionado]);
+    const toggleSeleccion = (empleado) => {
+        console.log(empleado)
+        //item.cantidad = Number(cantProducto)  //1
+        let carrito = []
+        if (sessionStorage.getItem("seleccionempleado")) {
+            //console.log(carrito)
+            carrito = JSON.parse(sessionStorage.getItem("seleccionempleado"))
+
+            carrito.push(empleado)
+
+
         }
+        else {
+            carrito.push(empleado)
+        }
+
+        sessionStorage.setItem("seleccionempleado", JSON.stringify(carrito))
+        console.log(carrito)
+
     };
 
     return (
@@ -48,7 +58,7 @@ function Empleados() {
                                     <div className="card-body">
                                         <h5 className="card-title">{empleado.nombres} {empleado.apellidos}</h5>
                                         <p className="card-text">{empleado.cargo}</p>
-                                        <button className="btn btn-primary" onClick={() => toggleSeleccion(empleado.idempleado)}>
+                                        <button className="btn btn-primary" onClick={() => toggleSeleccion(empleado)}>
                                             {empleadosSeleccionados.some(e => e.idempleado === empleado.idempleado) ? 'Quitar de seleccionados' : 'Seleccionar'}
                                         </button>
                                     </div>

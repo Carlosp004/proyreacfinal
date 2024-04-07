@@ -40,7 +40,7 @@ function PaisInsert() {
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            
+            window.location.replace("http://localhost:5173/paises");
         })
         .catch(error => {
             console.error('Error:', error);

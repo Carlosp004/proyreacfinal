@@ -164,18 +164,20 @@ function Paises() {
     };
 
 
-    
-
     return (
         <section id="Paises" className="padded">
             <div className="container">
-                
                 <h2>PAÍSES</h2>
-                <button className="btn btn-primary" onClick={handleAgregarPais}>Agregar País</button>
-                <div className="mb-3">
-                    
-                    <input type="text" className="form-control" placeholder="Indique expresión a buscar"
-                        value={textoBuscar} onChange={handleChangeTextoBuscar} />
+                <div className="row">
+                    <div className="col-sm-6"> {/* Este div ocupa la mitad del espacio */}
+                        <div className="mb-3">
+                            <input type="text" className="form-control" placeholder="Indique expresión a buscar"
+                                value={textoBuscar} onChange={handleChangeTextoBuscar} />
+                        </div>
+                    </div>
+                    <div className="col-sm-5 d-flex justify-content-end align-items-start"> {/* Este div ocupa la otra mitad del espacio y alinea los elementos a la derecha */}
+                        <button className="btn btn-primary" onClick={handleAgregarPais}>Agregar País</button>
+                    </div>
                 </div>
                 {dibujarTabla()}
                 {paisSeleccionado && (
@@ -190,8 +192,8 @@ function Paises() {
                     </div>
                 )}
                 {dibujarPaginacion()}
-                
             </div>
+
         </section>
     );
 }
